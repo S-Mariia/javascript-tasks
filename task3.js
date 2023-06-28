@@ -3,7 +3,7 @@
 
 const minWindow = function (s, t) {
   if (s.length < t.length) return "";
-  //   if (s === t) return t;
+  if (s === t) return t;
   if (t.length === 1) {
     return s.includes(t) ? t : "";
   }
@@ -32,10 +32,10 @@ const minWindow = function (s, t) {
         const closestLetter = arrayRest.find(
           ({ letter }) => letter === character
         );
+        arrayRest.splice(arrayRest.indexOf(closestLetter), 1);
         // видалити closestLetter з масиву arrayRest
         return closestLetter;
       });
-      console.log(closestLetters);
 
       const maxIdx = closestLetters.sort(
         (firstLetter, secondLetter) => firstLetter.idx - secondLetter.idx
@@ -56,7 +56,9 @@ const minWindow = function (s, t) {
   return sArr.slice(minSubArrayIdx.minIdx, minSubArrayIdx.maxIdx + 1).join("");
 };
 
-const s = "bbaa";
-const t = "aba";
+const s = "acbaca";
+const t = "ca";
 
 console.log(minWindow(s, t));
+
+// wrong  (doesnt work correctly)
